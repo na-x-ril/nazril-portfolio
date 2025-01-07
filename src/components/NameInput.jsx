@@ -20,7 +20,7 @@ export default function NameInput({ onSubmit }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900">
       <form onSubmit={handleSubmit} className="text-center">
         <label className="block text-white text-3xl mb-4 font-bold">
           Siapa nama kamu?
