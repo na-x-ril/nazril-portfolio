@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react"; // Tambahkan useRef dan useEffect
 
 export default function NameInput({ onSubmit }) {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const inputRef = useRef(null); // Buat ref untuk input
+
+  // Gunakan useEffect untuk fokus ke input saat komponen terbuka
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus(); // Fokus ke input
+    }
+  }, []); // Jalankan hanya sekali saat komponen pertama kali di-render
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +44,7 @@ export default function NameInput({ onSubmit }) {
           placeholder="Nama Anda"
           maxLength={20}
           required
+          ref={inputRef} // Tambahkan ref ke input
         />
         {error && <p className="text-red-500 mt-2">{error}</p>}
         <button
