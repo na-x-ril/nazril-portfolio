@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NameInput from "./components/NameInput";
 import SplashScreen from "./components/SplashScreen";
 import Navbar from "./components/Navbar";
@@ -12,14 +12,26 @@ export default function App() {
   const [isNameSubmitted, setIsNameSubmitted] = useState(false);
   const [isSplashDone, setIsSplashDone] = useState(false);
 
+  useEffect(() => {
+    const savedName = localStorage.getItem("userName");
+    if (savedName) {
+      setName(savedName);
+      setIsNameSubmitted(true);
+      setIsSplashDone(true);
+    }
+  }, []);
+
+  const handleNameSubmit = (name) => {
+    setName(name);
+    setIsNameSubmitted(true);
+    localStorage.setItem("userName", name);
+  };
+
   return (
     <>
       {!isNameSubmitted && (
         <NameInput
-          onSubmit={(name) => {
-            setName(name);
-            setIsNameSubmitted(true);
-          }}
+          onSubmit={handleNameSubmit}
         />
       )}
 
