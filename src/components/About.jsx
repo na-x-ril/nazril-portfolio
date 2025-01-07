@@ -1,3 +1,5 @@
+import { photo } from "public/aaa5a001c7d719454c3c3287df90af23.png";
+
 export default function About() {
     return (
       <main className="min-h-screen bg-gray-900 flex items-center justify-center pt-24 px-4">
@@ -5,7 +7,7 @@ export default function About() {
           <div className="flex flex-col items-center space-y-5">
             {/* Foto Profil */}
             <img
-              src="/aaa5a001c7d719454c3c3287df90af23.png"
+              src={photo}
               alt="Foto Profil"
               className="w-32 h-32 rounded-full object-cover border-4 p-1 border-blue-500"
             />
