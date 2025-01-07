@@ -79,7 +79,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              to="/contact"
+              to="/contacts"
               className="text-white hover:text-gray-200 transition-colors"
               onClick={toggleMenu}
             >
