@@ -1,4 +1,4 @@
-import { photo } from "public/aaa5a001c7d719454c3c3287df90af23.png";
+import { photo } from "/aaa5a001c7d719454c3c3287df90af23.png";
 
 export default function About() {
     return (
