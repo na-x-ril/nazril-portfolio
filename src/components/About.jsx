@@ -1,4 +1,4 @@
-import { photo } from process.env.PUBLIC_URL + "/profile.png";
+import { photo } from { process.env.PUBLIC_URL + "/profile.png" };
 
 export default function About() {
     return (
