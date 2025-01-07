@@ -47,7 +47,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/contact" className="text-white hover:text-gray-200 transition-colors">
+            <Link to="/contacts" className="text-white hover:text-gray-200 transition-colors">
               Kontak
             </Link>
           </li>
