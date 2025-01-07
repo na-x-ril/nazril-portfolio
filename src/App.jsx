@@ -12,36 +12,35 @@ export default function App() {
   const [isNameSubmitted, setIsNameSubmitted] = useState(false);
   const [isSplashDone, setIsSplashDone] = useState(false);
 
+  // Cek localStorage saat komponen pertama kali di-render
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
     if (savedName) {
       setName(savedName);
-      setIsNameSubmitted(true);
-      setIsSplashDone(true);
+      setIsNameSubmitted(true); // Langsung ke SplashScreen
     }
   }, []);
 
   const handleNameSubmit = (name) => {
     setName(name);
-    setIsNameSubmitted(true);
-    localStorage.setItem("userName", name);
+    setIsNameSubmitted(true); // Langsung ke SplashScreen
+    localStorage.setItem("userName", name); // Simpan nama ke localStorage
   };
 
   return (
     <>
-      {!isNameSubmitted && (
-        <NameInput
-          onSubmit={handleNameSubmit}
-        />
-      )}
+      {/* Tampilkan NameInput jika nama belum disubmit */}
+      {!isNameSubmitted && <NameInput onSubmit={handleNameSubmit} />}
 
+      {/* Tampilkan SplashScreen jika nama sudah disubmit tetapi animasi belum selesai */}
       {isNameSubmitted && !isSplashDone && (
         <SplashScreen
           name={name}
-          onAnimationEnd={() => setIsSplashDone(true)}
+          onAnimationEnd={() => setIsSplashDone(true)} // Setelah animasi selesai, lanjut ke konten utama
         />
       )}
 
+      {/* Tampilkan konten utama setelah SplashScreen selesai */}
       {isSplashDone && (
         <div className="opacity-0 animate-fade-in">
           <Navbar />
