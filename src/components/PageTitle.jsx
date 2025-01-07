@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const PageTitle = () => {
+export default function PageTitle() {
   const location = useLocation();
 
   useEffect(() => {
@@ -25,5 +25,3 @@ const PageTitle = () => {
 
   return null;
 };
-
-export default PageTitle;

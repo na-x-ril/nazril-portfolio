@@ -1,4 +1,4 @@
-export default function Contact() {
+export default function Contacts() {
     return (
       <main className="min-h-screen bg-gray-800 flex items-center justify-center pt-24 px-4">
         <div className="max-w-4xl w-full bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg">

@@ -1,45 +1,13 @@
-import { useState } from "react";
-import NameInput from "./components/NameInput";
-import SplashScreen from "./components/SplashScreen";
-import Navbar from "./components/Navbar";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-export default function App() {
-  const [name, setName] = useState("");
-  const [isNameSubmitted, setIsNameSubmitted] = useState(false);
-  const [isSplashDone, setIsSplashDone] = useState(false);
-
-  return (
-    <>
-      {!isNameSubmitted && (
-        <NameInput
-          onSubmit={(name) => {
-            setName(name);
-            setIsNameSubmitted(true);
-          }}
-        />
-      )}
-
-      {isNameSubmitted && !isSplashDone && (
-        <SplashScreen
-          name={name}
-          onAnimationEnd={() => setIsSplashDone(true)}
-        />
-      )}
-
-      {isSplashDone && (
-        <div className="opacity-0 animate-fade-in">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-      )}
-    </>
-  );
-}
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter basename="/projects">
+    <Routes>
+      <Route path="*" element={<App />} />
+    </Routes>
+  </BrowserRouter>
+);
