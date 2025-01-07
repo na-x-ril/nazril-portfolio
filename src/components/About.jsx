@@ -1,5 +1,3 @@
-import { photo } from { process.env.PUBLIC_URL + "/profile.png" };
-
 export default function About() {
     return (
       <main className="min-h-screen bg-gray-900 flex items-center justify-center pt-24 px-4">
@@ -7,7 +5,7 @@ export default function About() {
           <div className="flex flex-col items-center space-y-5">
             {/* Foto Profil */}
             <img
-              src={photo}
+              src={process.env.PUBLIC_URL + "/profile.png"}
               alt="Foto Profil"
               className="w-32 h-32 rounded-full object-cover border-4 p-1 border-blue-500"
             />
