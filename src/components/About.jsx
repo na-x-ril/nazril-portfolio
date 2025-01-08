@@ -37,7 +37,7 @@ export default function About() {
   
               {/* GitHub */}
               <a
-                href="https://github.com/na-x-ril"
+                href="https://github.com/onlynazril"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition-colors"
