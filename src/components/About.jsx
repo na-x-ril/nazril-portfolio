@@ -20,7 +20,7 @@ export default function About() {
             <div className="flex space-x-6">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/mnazril_7673/"
+                href="https://www.instagram.com/onlynazril/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition-colors"
@@ -37,7 +37,7 @@ export default function About() {
   
               {/* GitHub */}
               <a
-                href="https://github.com/onlynazril"
+                href="https://github.com/na-x-ril"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition-colors"
