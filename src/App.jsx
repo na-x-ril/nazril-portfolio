@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import NameInput from "./components/NameInput";
 import SplashScreen from "./components/SplashScreen";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
-import EasterEgg from "./components/EasterEgg";
 import { Routes, Route } from "react-router-dom";
 import { getSpotifyAccessToken, searchMusicOnSpotify, searchMusicOnYouTube } from "./utils/music";
 
@@ -16,6 +15,7 @@ export default function App() {
   const [musicLink, setMusicLink] = useState("");
   const [isNameSubmitted, setIsNameSubmitted] = useState(false);
   const [isSplashDone, setIsSplashDone] = useState(false);
+  const [showMusicInput, setShowMusicInput] = useState(false); // State untuk menampilkan input musik
   const audioRef = useRef(null); // Ref untuk elemen <audio>
 
   // Cek localStorage saat komponen pertama kali di-render
@@ -23,10 +23,12 @@ export default function App() {
     const savedName = localStorage.getItem("userName");
     const savedMusicName = localStorage.getItem("musicName");
     const savedMusicSource = localStorage.getItem("musicSource");
+    const savedMusicLink = localStorage.getItem("musicLink");
     if (savedName) {
       setName(savedName);
       setMusicName(savedMusicName || "");
       setMusicSource(savedMusicSource || "spotify");
+      setMusicLink(savedMusicLink || "");
       setIsNameSubmitted(true); // Langsung ke SplashScreen
     }
   }, []);
@@ -49,6 +51,7 @@ export default function App() {
         link = await searchMusicOnYouTube(musicName);
       }
       setMusicLink(link);
+      localStorage.setItem("musicLink", link); // Simpan link musik ke localStorage
     }
   };
 
@@ -62,9 +65,13 @@ export default function App() {
     }
   }, [musicLink]);
 
+  // Fungsi untuk mengganti musik
+  const handleChangeMusic = () => {
+    setShowMusicInput(true); // Tampilkan input musik
+  };
+
   return (
     <>
-    <EasterEgg />
       {/* Tampilkan NameInput jika nama belum disubmit atau pengguna ingin mengganti musik */}
       {(!isNameSubmitted || showMusicInput) && (
         <NameInput
