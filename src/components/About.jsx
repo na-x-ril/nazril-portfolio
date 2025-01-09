@@ -1,47 +1,63 @@
 import { useState } from "react";
+import { DiJavascript1, DiReact, DiNodejs, DiGit } from "react-icons/di";
+import { SiTailwindcss } from "react-icons/si";
 
 const skills = [
-  { name: "JavaScript", level: 90 },
-  { name: "React", level: 85 },
-  { name: "Tailwind CSS", level: 80 },
-  { name: "Node.js", level: 75 },
-  { name: "Git", level: 85 },
+  { name: "JavaScript", level: 90, icon: <DiJavascript1 />, color: "#F7DF1E" }, // Kuning
+  { name: "React", level: 85, icon: <DiReact />, color: "#61DAFB" }, // Biru
+  { name: "Tailwind CSS", level: 80, icon: <SiTailwindcss />, color: "#06B6D4" }, // Cyan
+  { name: "Node.js", level: 75, icon: <DiNodejs />, color: "#68A063" }, // Hijau
+  { name: "Git", level: 85, icon: <DiGit />, color: "#F05032" }, // Oranye
 ];
 
 export default function About() {
+  // State untuk thought bubble (foto profil)
   const [showThought, setShowThought] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
 
-  const handleMouseEnter = () => {
+  // State untuk hover skill
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+
+  // Handler untuk foto profil
+  const handleProfileMouseEnter = () => {
     const timeout = setTimeout(() => {
       setShowThought(true);
-    }, 400);
+    }, 300);
     setHoverTimeout(timeout);
   };
 
-  const handleMouseLeave = () => {
+  const handleProfileMouseLeave = () => {
     clearTimeout(hoverTimeout);
     setShowThought(false);
+  };
+
+  // Handler untuk skill
+  const handleSkillMouseEnter = (index) => {
+    setHoveredSkill(index);
+  };
+
+  const handleSkillMouseLeave = () => {
+    setHoveredSkill(null);
   };
 
   return (
     <main className="min-h-screen bg-gray-900 flex items-center justify-center pt-24 px-4">
       <div className="max-w-4xl w-full bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg">
         <div className="flex flex-col items-center space-y-5">
-          {/* Foto Profil */}
+          {/* Foto Profil dengan Efek Hover */}
           <div
             className="relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleProfileMouseEnter}
+            onMouseLeave={handleProfileMouseLeave}
           >
             <img
               src="aaa5a001c7d719454c3c3287df90af23.png"
               alt="Foto Profil"
-              className="w-32 h-32 rounded-full object-cover border-4 p-1 border-blue-500"
+              className="w-32 h-32 rounded-full object-cover border-4 p-1 border-blue-500" // Hapus transform dan hover:scale-105
             />
             {/* Thought Bubble */}
             {showThought && (
-              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-500 text-nowrap font-semibold text-white text-sm lg:text-lg px-2 py-1 rounded-lg shadow-lg animate-fade-in">
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white text-md font-semibold lg:text-lg text-nowrap px-4 py-2 rounded-lg shadow-lg animate-fade-in">
                 <p>Hai, apa kabar? 👋</p>
                 <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-gray-500"></div>
               </div>
@@ -56,19 +72,49 @@ export default function About() {
 
           {/* Skill atau Teknologi yang Dikuasai */}
           <div className="w-full mt-6">
-            <h2 className="text-2xl font-bold text-white mb-4">Skill & Teknologi</h2>
-            <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-white mb-4 w-fit mx-auto text-center">
+              Skill & Teknologi
+            </h2>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
               {skills.map((skill, index) => (
-                <div key={index} className="bg-gray-700/50 p-4 rounded-lg relative">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white">{skill.name}</span>
-                    <span className="text-gray-300">{skill.level}%</span>
-                  </div>
-                  {/* Border yang menyesuaikan persentase */}
+                <div
+                  key={index}
+                  className="relative"
+                  onMouseEnter={() => handleSkillMouseEnter(index)}
+                  onMouseLeave={handleSkillMouseLeave}
+                >
+                  {/* Nama Skill saat dihover */}
+                  {hoveredSkill === index && (
+                    <div
+                      className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-500 text-slate-600 text-nowrap text-sm font-semibold lg:text-sm px-2 py-1 rounded-lg shadow-lg z-10"
+                      style={{ backgroundColor: skill.color }} // Warna latar sesuai skill
+                    >
+                      {skill.name} {skill.level}%
+                    </div>
+                  )}
+                  {/* Ikon Skill dengan border melingkari separuhnya */}
                   <div
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-blue-500 rounded-full"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
+                    className="w-16 h-16 rounded-full flex items-center justify-center relative mx-auto"
+                    style={{
+                      background: `conic-gradient(
+                        transparent ${360 - (skill.level / 100) * 360}deg,
+                        ${skill.color} ${360 - (skill.level / 100) * 360}deg 360deg
+                      )`,
+                    }}
+                  >
+                    <div
+                      className="w-[90%] h-[90%] bg-gray-700 rounded-full flex items-center justify-center"
+                    >
+                      <div
+                        className="text-3xl text-white transition-colors duration-300"
+                        style={{
+                          color: hoveredSkill === index ? skill.color : "white", // Warna ikon berubah saat dihover
+                        }}
+                      >
+                        {skill.icon}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
