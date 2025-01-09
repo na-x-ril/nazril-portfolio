@@ -1,11 +1,18 @@
 import { useState } from "react";
 
+const skills = [
+  { name: "JavaScript", level: 90 },
+  { name: "React", level: 85 },
+  { name: "Tailwind CSS", level: 80 },
+  { name: "Node.js", level: 75 },
+  { name: "Git", level: 85 },
+];
+
 export default function About() {
   const [showThought, setShowThought] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
 
   const handleMouseEnter = () => {
-    // Set timeout untuk menampilkan thought setelah 0.6 detik
     const timeout = setTimeout(() => {
       setShowThought(true);
     }, 400);
@@ -13,7 +20,6 @@ export default function About() {
   };
 
   const handleMouseLeave = () => {
-    // Clear timeout dan sembunyikan thought
     clearTimeout(hoverTimeout);
     setShowThought(false);
   };
@@ -22,7 +28,7 @@ export default function About() {
     <main className="min-h-screen bg-gray-900 flex items-center justify-center pt-24 px-4">
       <div className="max-w-4xl w-full bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg">
         <div className="flex flex-col items-center space-y-5">
-          {/* Foto Profil dengan Efek Hover */}
+          {/* Foto Profil */}
           <div
             className="relative"
             onMouseEnter={handleMouseEnter}
@@ -47,6 +53,27 @@ export default function About() {
           <p className="text-center text-gray-300 max-w-md">
             Saya adalah seorang pelajar SMA yang tertarik dengan pengembangan web dan teknologi.
           </p>
+
+          {/* Skill atau Teknologi yang Dikuasai */}
+          <div className="w-full mt-6">
+            <h2 className="text-2xl font-bold text-white mb-4">Skill & Teknologi</h2>
+            <div className="space-y-3">
+              {skills.map((skill, index) => (
+                <div key={index} className="bg-gray-700/50 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-white">{skill.name}</span>
+                    <span className="text-gray-300">{skill.level}%</span>
+                  </div>
+                  <div className="w-full bg-gray-600 rounded-full h-2 mt-2">
+                    <div
+                      className="bg-blue-500 h-2 rounded-full"
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Media Sosial */}
           <div className="flex space-x-6">
