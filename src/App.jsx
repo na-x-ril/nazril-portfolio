@@ -9,53 +9,73 @@ import EasterEgg from "./components/EasterEgg";
 import { Routes, Route } from "react-router-dom";
 import { getSpotifyAccessToken, searchMusicOnSpotify, searchMusicOnYouTube } from "./utils/music";
 
-const YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY"; // Ganti dengan API Key Anda
-
 export default function App() {
   const [name, setName] = useState("");
   const [musicName, setMusicName] = useState("");
+  const [musicSource, setMusicSource] = useState("spotify"); // Default: Spotify
   const [musicLink, setMusicLink] = useState("");
   const [isNameSubmitted, setIsNameSubmitted] = useState(false);
   const [isSplashDone, setIsSplashDone] = useState(false);
+  const audioRef = useRef(null); // Ref untuk elemen <audio>
 
   // Cek localStorage saat komponen pertama kali di-render
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
     const savedMusicName = localStorage.getItem("musicName");
+    const savedMusicSource = localStorage.getItem("musicSource");
     if (savedName) {
       setName(savedName);
       setMusicName(savedMusicName || "");
+      setMusicSource(savedMusicSource || "spotify");
       setIsNameSubmitted(true); // Langsung ke SplashScreen
     }
   }, []);
 
-  const handleNameSubmit = async (name, musicName) => {
+  const handleNameSubmit = async (name, musicName, musicSource) => {
     setName(name);
     setMusicName(musicName);
+    setMusicSource(musicSource);
     setIsNameSubmitted(true); // Langsung ke SplashScreen
     localStorage.setItem("userName", name); // Simpan nama ke localStorage
     localStorage.setItem("musicName", musicName); // Simpan nama musik ke localStorage
+    localStorage.setItem("musicSource", musicSource); // Simpan sumber musik ke localStorage
 
     if (musicName) {
-      // Coba cari musik di Spotify terlebih dahulu
-      const accessToken = await getSpotifyAccessToken();
-      const spotifyLink = await searchMusicOnSpotify(musicName, accessToken);
-
-      if (spotifyLink) {
-        setMusicLink(spotifyLink); // Gunakan Spotify jika ditemukan
-      } else {
-        // Jika tidak ditemukan di Spotify, cari di YouTube
-        const youtubeLink = await searchMusicOnYouTube(musicName);
-        setMusicLink(youtubeLink); // Gunakan YouTube jika ditemukan
+      let link = "";
+      if (musicSource === "spotify") {
+        const accessToken = await getSpotifyAccessToken();
+        link = await searchMusicOnSpotify(musicName, accessToken);
+      } else if (musicSource === "youtube") {
+        link = await searchMusicOnYouTube(musicName);
       }
+      setMusicLink(link);
     }
   };
+
+  // Putar musik saat musicLink berubah
+  useEffect(() => {
+    if (musicLink && audioRef.current) {
+      audioRef.current.src = musicLink;
+      audioRef.current.play().catch((error) => {
+        console.error("Error playing audio:", error);
+      });
+    }
+  }, [musicLink]);
 
   return (
     <>
     <EasterEgg />
-      {/* Tampilkan NameInput jika nama belum disubmit */}
-      {!isNameSubmitted && <NameInput onSubmit={handleNameSubmit} />}
+      {/* Tampilkan NameInput jika nama belum disubmit atau pengguna ingin mengganti musik */}
+      {(!isNameSubmitted || showMusicInput) && (
+        <NameInput
+          onSubmit={(name, musicName, musicSource) => {
+            handleNameSubmit(name, musicName, musicSource);
+            setShowMusicInput(false); // Sembunyikan input musik setelah submit
+          }}
+          initialMusicName={musicName}
+          initialMusicSource={musicSource}
+        />
+      )}
 
       {/* Tampilkan SplashScreen jika nama sudah disubmit tetapi animasi belum selesai */}
       {isNameSubmitted && !isSplashDone && (
@@ -69,30 +89,17 @@ export default function App() {
       {isSplashDone && (
         <div className="opacity-0 animate-fade-in">
           <Navbar />
-          {musicLink && (
-            <div className="fixed bottom-4 right-4">
-              {musicLink.includes("spotify.com") ? (
-                <iframe
-                  src={musicLink}
-                  width="300"
-                  height="80"
-                  frameBorder="0"
-                  allow="encrypted-media"
-                  title="Spotify Music Player"
-                ></iframe>
-              ) : (
-                <iframe
-                  width="300"
-                  height="150"
-                  src={musicLink}
-                  title="YouTube Music Player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              )}
-            </div>
-          )}
+          {/* Tombol untuk mengganti musik */}
+          <button
+            onClick={handleChangeMusic}
+            className="fixed bottom-4 left-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Ganti Musik
+          </button>
+          {/* Elemen <audio> untuk memutar musik di latar belakang */}
+          <audio ref={audioRef} controls className="hidden">
+            Your browser does not support the audio element.
+          </audio>
           <Routes>
             <Route path="/" element={<About />} />
             <Route path="/projects" element={<Projects />} />

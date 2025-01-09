@@ -1,5 +1,3 @@
-const YOUTUBE_API_KEY = "AIzaSyCcl8FTgdS6JVXmPROyE-_nvZSfPb_FNqU";
-
 // Fungsi untuk mendapatkan token akses Spotify
 export const getSpotifyAccessToken = async () => {
     const clientId = "YOUR_SPOTIFY_CLIENT_ID";
@@ -42,7 +40,7 @@ export const getSpotifyAccessToken = async () => {
   
   // Fungsi untuk mencari video musik di YouTube
   export const searchMusicOnYouTube = async (query) => {
-    const YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY"; // Ganti dengan API Key Anda
+    const YOUTUBE_API_KEY = "AIzaSyCcl8FTgdS6JVXmPROyE-_nvZSfPb_FNqU";
     try {
       const response = await fetch(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(
