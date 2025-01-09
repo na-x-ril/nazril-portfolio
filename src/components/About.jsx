@@ -59,17 +59,16 @@ export default function About() {
             <h2 className="text-2xl font-bold text-white mb-4">Skill & Teknologi</h2>
             <div className="space-y-3">
               {skills.map((skill, index) => (
-                <div key={index} className="bg-gray-700/50 p-4 rounded-lg">
+                <div key={index} className="bg-gray-700/50 p-4 rounded-lg relative">
                   <div className="flex justify-between items-center">
                     <span className="text-white">{skill.name}</span>
                     <span className="text-gray-300">{skill.level}%</span>
                   </div>
-                  <div className="w-full bg-gray-600 rounded-full h-2 mt-2">
-                    <div
-                      className="bg-blue-500 h-2 rounded-full"
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
+                  {/* Border yang menyesuaikan persentase */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-blue-500 rounded-full"
+                    style={{ width: `${skill.level}%` }}
+                  ></div>
                 </div>
               ))}
             </div>
