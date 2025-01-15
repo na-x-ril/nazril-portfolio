@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-6xl bg-white/10 backdrop-blur-md rounded-lg shadow-lg z-50">
       <div className="h-16 flex items-center justify-between px-6">
         {/* Logo */}
-        <a href="/" className="flex text-3xl text-white font-extrabold items-center">
+        <a href="/nazril-portfolio/" className="flex text-3xl text-white font-extrabold items-center">
         <img
             src="aaa5a001c7d719454c3c3287df90af23.png"
             alt="Foto Profil"
