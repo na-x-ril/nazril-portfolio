@@ -41,7 +41,7 @@ export default function About() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-900 flex items-center justify-center pt-24 px-4">
+    <main className="h-screen bg-gray-900 flex items-center justify-center pt-24 px-4">
       <div className="max-w-4xl w-full bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg">
         <div className="flex flex-col items-center space-y-5">
           {/* Foto Profil dengan Efek Hover */}

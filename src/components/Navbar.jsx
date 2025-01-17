@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
   };
 
   return (
@@ -41,6 +54,10 @@ export default function Navbar() {
 
         {/* Menu (Desktop) */}
         <ul className="hidden lg:flex space-x-8 text-lg">
+          {/* Jam Digital */}
+          <div className="hidden lg:flex items-center text-white text-lg">
+            {formatTime(currentTime)}
+          </div>
           <li>
             <Link to="/" className="text-white hover:text-gray-200 transition-colors">
               Tentang Saya
