@@ -8,8 +8,11 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'John Doe - Portfolio',
-  description: 'Full-stack developer portfolio showcasing projects and skills',
+  title: "D'Nazrill Portfolio",
+  description: "My first portfolio website built with Next.js and Tailwind CSS.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
