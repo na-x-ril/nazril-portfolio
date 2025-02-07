@@ -10,8 +10,8 @@ const projects = [
     title: "D'Nazrill Portfolio",
     description: "Portfolio website showcasing my projects, contacts and social media.",
     tags: ["Next.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/na-x-ril/nazril-portfolio",
-    liveUrl: "https://nazril.dev"
+    githubUrl: "https://github.com/na-x-ril/nazril-portfolio-2",
+    liveUrl: "https://github.com/na-x-ril/nazril-portfolio-2"
   },
   {
     title: "Web Injector",
