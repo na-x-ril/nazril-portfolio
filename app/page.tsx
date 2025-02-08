@@ -30,7 +30,7 @@ export default function Home() {
               I am a high school student who is interested in web development
               and technology.
             </p>
-            <div className="mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
+            <div className="mt-8 flex sm:justify-center lg:justify-start gap-4">
               <Button asChild size="lg">
                 <Link href="/projects">
                   View My Work
