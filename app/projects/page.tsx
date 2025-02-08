@@ -17,13 +17,13 @@ const projects = [
     title: "Whatsapp Ext",
     description: "Chrome extension to send many chats at once.",
     tags: ["JavaScript"],
-    githubUrl: "https://github.com/na-x-ril/whatsapp-ext"
+    githubUrl: "https://github.com/na-x-ril/whatsapp-ext/"
   },
   {
     title: "GainNode",
     description: "JavaScript script to change the sound quality on a website.",
     tags: ["JavaScript"],
-    githubUrl: "https://github.com/na-x-ril/audioGain"
+    githubUrl: "https://github.com/na-x-ril/audioGain/"
   }
 ];
 
@@ -40,12 +40,12 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden">
-              <CardHeader>
+            <Card key={index} className="flex flex-col h-full overflow-hidden">
+              <CardHeader className="flex-grow">
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="mt-auto">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <Badge key={tag} variant="secondary">
