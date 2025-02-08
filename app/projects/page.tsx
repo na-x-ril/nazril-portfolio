@@ -14,10 +14,10 @@ const projects = [
     liveUrl: "https://na-x-ril.github.io/nazril-portfolio-2/"
   },
   {
-    title: "Web Injector",
-    description: "Chrome extension to insert functions and change the appearance of websites with custom CSS.",
+    title: "Whatsapp Ext",
+    description: "Chrome extension to send many chats at once.",
     tags: ["JavaScript"],
-    githubUrl: "#"
+    githubUrl: "https://github.com/na-x-ril/whatsapp-ext"
   },
   {
     title: "GainNode",
