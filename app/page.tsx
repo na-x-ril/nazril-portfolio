@@ -7,11 +7,11 @@ import { DiJavascript1, DiReact, DiNodejs, DiGit } from "react-icons/di";
 import { SiTailwindcss } from "react-icons/si";
 
 const skills = [
-  { name: "JavaScript", level: 90, icon: <DiJavascript1 />},
-  { name: "React", level: 85, icon: <DiReact />},
-  { name: "Tailwind CSS", level: 80, icon: <SiTailwindcss />},
-  { name: "Node.js", level: 75, icon: <DiNodejs />},
-  { name: "Git", level: 85, icon: <DiGit />},
+  { name: "JavaScript", level: 90, icon: <DiJavascript1 className="text-foreground" />},
+  { name: "React", level: 85, icon: <DiReact className="text-foreground" />},
+  { name: "Tailwind CSS", level: 80, icon: <SiTailwindcss className="text-foreground" />},
+  { name: "Node.js", level: 75, icon: <DiNodejs className="text-foreground" />},
+  { name: "Git", level: 85, icon: <DiGit className="text-foreground" />},
 ];
 
 export default function Home() {
@@ -56,7 +56,7 @@ export default function Home() {
           </div>
         </div>
         <div className="max-w-7xl mt-32 mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
                 Featured Skills
               </h2>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-16">
