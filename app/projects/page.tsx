@@ -3,14 +3,15 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { SiGithub, SiLinux } from "react-icons/si";
+import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
     title: "D'Nazrill Portfolio",
     description: "Portfolio website showcasing my projects, contacts and social media.",
     tags: ["Next.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/na-x-ril/nazril-portfolio-2",
+    githubUrl: "https://github.com/na-x-ril/nazril-portfolio",
     liveUrl: "https://na-x-ril.github.io/nazril-portfolio-2/"
   },
   {
@@ -64,7 +65,7 @@ export default function Projects() {
                   )}
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2" />
+                      <SiGithub className="h-4 w-4 mr-2" />
                       Code
                     </a>
                   </Button>

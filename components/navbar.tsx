@@ -8,17 +8,6 @@ import { ModeToggle } from '@/components/mode-toggle';
 
 export function Navbar() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const links = [
     { href: '/', label: 'Home' },
     { href: '/projects', label: 'Projects' },
@@ -27,12 +16,7 @@ export function Navbar() {
 
   return (
     <header
-      className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        isScrolled
-          ? 'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b'
-          : 'bg-transparent'
-      )}
+      className={cn("fixed top-0 z-50 w-full bg-background/30 backdrop-blur-lg")}
     >
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">

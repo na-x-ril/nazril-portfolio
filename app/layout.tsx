@@ -10,9 +10,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: "D'Nazrill Portfolio",
   description: "My first portfolio website built with Next.js and Tailwind CSS.",
-  icons: {
-    icon: "/web-icon.png",
-  },
 };
 
 export default function RootLayout({

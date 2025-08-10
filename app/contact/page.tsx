@@ -16,7 +16,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
+import { SiGmail } from "react-icons/si";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -59,8 +60,8 @@ export default function Contact() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center space-x-4">
-                <Mail className="h-5 w-5 text-muted-foreground" />
-                <p>nazrilpro10@example.com</p>
+                <SiGmail className="h-5 w-5 text-muted-foreground" />
+                <p>nazrilpro10@gmail.com</p>
               </div>
               <div className="flex items-center space-x-4">
                 <Phone className="h-5 w-5 text-muted-foreground" />
