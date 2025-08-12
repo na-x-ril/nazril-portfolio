@@ -120,3 +120,12 @@
 ::-webkit-scrollbar-thumb {
   background: #131313; /* warna batang scrollbar */
 }
+
+::-webkit-scrollbar {
+  display: none; /* Safari & Chrome */
+}
+
+html, body {
+  -ms-overflow-style: none;  /* IE dan Edge lama */
+  scrollbar-width: none;     /* Firefox */
+}
