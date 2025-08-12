@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { SiGithub, SiInstagram } from "react-icons/si"
+import Image from "next/image"
+import profile from "@/public/profile.png"
 
 interface ProfileSidebarProps {
   showSidebar: boolean
@@ -45,7 +47,7 @@ export const ProfileSidebar = ({ showSidebar, activeSection, scrollToSection }: 
           <CardContent className="p-6">
             <div className="text-center mb-4">
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-2xl">
-                MN
+                <Image src={profile} alt="Profile Picture" width={80} height={80} className="rounded-full"/>
               </div>
               <h3 className="font-bold text-lg">Muhammad Nazril</h3>
               <p className="text-sm text-muted-foreground">High School Student</p>

@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import SplitText from "../split-text"
 import TextType from "../text-type"
-import Link from "next/link"
-import { SiGithub, SiInstagram } from "react-icons/si"
+import LightRays from "../light-rays"
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void
@@ -14,6 +13,20 @@ interface HeroSectionProps {
 export const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div style={{ width: '100%', height: '100%', position: 'absolute', pointerEvents: 'none' }}>
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#00ffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays"
+        />
+      </div>
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br pt-10 from-primary/5 via-transparent to-secondary/5 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)] animate-pulse"></div>
