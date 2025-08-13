@@ -1,45 +1,18 @@
-"use client"
+"use client";
 
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ExternalLink } from "lucide-react"
-import { SiGithub } from "react-icons/si"
-import { AnimatedElement } from "@/components/animations/animated-element"
-import SpotlightCard from "../spotlight-card"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
+import { SiGithub } from "react-icons/si";
+import { AnimatedElement } from "@/components/animations/animated-element";
+import SpotlightCard from "../spotlight-card";
 
-// Mapping teknologi -> link resmi
-const techLinks: Record<string, string> = {
-  "Next.js": "https://nextjs.org/",
-  "Tailwind CSS": "https://tailwindcss.com/",
-  "JavaScript": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-}
-
-const projects = [
-  {
-    title: "D'Nazrill Portfolio",
-    description: "Portfolio website showcasing my projects, contacts and social media.",
-    tags: ["Next.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/na-x-ril/nazril-portfolio",
-    liveUrl: "https://onlynazril7z.vercel.app/"
-  },
-  {
-    title: "Whatsapp Ext",
-    description: "Chrome extension to send many chats at once.",
-    tags: ["JavaScript"],
-    githubUrl: "https://github.com/na-x-ril/whatsapp-ext/"
-  },
-  {
-    title: "GainNode",
-    description: "JavaScript script to change the sound quality on a website.",
-    tags: ["JavaScript"],
-    githubUrl: "https://github.com/na-x-ril/audioGain/"
-  }
-];
+import { projects, techLinks } from "@/data/portfolio-data";
 
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="py-20 min-h-screen">
-      <div className="max-w-7xl min-lg:pt-20 mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl min-lg:pt-20 mx-auto pt-20 px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-16">
           <AnimatedElement>
@@ -47,12 +20,13 @@ export const ProjectsSection = () => {
           </AnimatedElement>
           <AnimatedElement delay={200}>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Here are some of my recent projects that showcase my skills and experience in web development.
+              Here are some of my recent projects that showcase my skills and
+              experience in web development.
             </p>
           </AnimatedElement>
         </div>
 
-        {/* Project Cards */}
+        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <AnimatedElement key={index} delay={index * 200} direction="up">
@@ -66,6 +40,7 @@ export const ProjectsSection = () => {
                   </h3>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                 </div>
+
                 <div className="mt-auto">
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -95,7 +70,11 @@ export const ProjectsSection = () => {
                         className="hover:scale-105 transition-transform bg-transparent border-neutral-600 hover:border-blue-400"
                         asChild
                       >
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <ExternalLink className="h-4 w-4 mr-2" />
                           Live Demo
                         </a>
@@ -107,7 +86,11 @@ export const ProjectsSection = () => {
                       className="hover:scale-105 transition-transform bg-transparent border-neutral-600 hover:border-blue-400"
                       asChild
                     >
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <SiGithub className="h-4 w-4 mr-2" />
                         Code
                       </a>
@@ -120,5 +103,5 @@ export const ProjectsSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

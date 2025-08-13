@@ -2,6 +2,7 @@
 
 import { ElementType, useEffect, useRef, useState, createElement } from "react";
 import { gsap } from "gsap";
+import { useTheme } from "next-themes";
 
 interface TextTypeProps {
   className?: string;
@@ -52,6 +53,7 @@ const TextType = ({
   const [isVisible, setIsVisible] = useState(!startOnVisible);
   const cursorRef = useRef<HTMLSpanElement>(null);
   const containerRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   const textArray = Array.isArray(text) ? text : [text];
 
@@ -62,8 +64,8 @@ const TextType = ({
   };
 
   const getCurrentTextColor = () => {
-    if (textColors.length === 0) return "#ffffff";
-    return textColors[currentTextIndex % textColors.length];
+    const currentColor = (theme === "light" ? ["#000", "#333"] : ["#fff", "#ccc"]);
+    return textColors[currentTextIndex % textColors.length] || currentColor[0];
   };
 
   useEffect(() => {

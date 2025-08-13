@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes";
 import React, { useRef, useState } from "react";
 
 interface Position {
@@ -19,6 +20,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState<number>(0);
+  const { theme } = useTheme();
 
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (!divRef.current || isFocused) return;
@@ -45,6 +47,17 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
     setOpacity(0);
   };
 
+  const lightSpotlight = "rgba(59, 130, 246, 0.15)";
+  const darkSpotlight = "rgba(59, 130, 246, 0.25)";
+  const lightBlackSpotlight = "rgba(0, 0, 0, 0.15)";
+  const darkBlackSpotlight = "rgba(0, 0, 0, 0.25)";
+  const lightSpotBorder = "rgba(59, 130, 246, 0.25)";
+  const darkSpotBorder = "rgba(59, 130, 246, 0.35)";
+
+  const activeSpotlight = spotlightColor || (theme === "dark" ? darkSpotlight : lightSpotlight);
+  const activeBlackSpotlight = theme === "dark" ? darkBlackSpotlight : lightBlackSpotlight;
+  const activeSpotBorder = theme === "dark" ? darkSpotBorder : lightSpotBorder;
+
   return (
     <div
       ref={divRef}
@@ -53,13 +66,13 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-3xl border border-neutral-800 bg-neutral-900 overflow-hidden p-8 ${className}`}
+      className={`relative rounded-3xl border border-[${activeSpotBorder}] bg-[${activeBlackSpotlight}] overflow-hidden p-8 ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${activeSpotlight}, transparent 80%)`,
         }}
       />
       {children}
