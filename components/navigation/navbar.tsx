@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
+import Link from "next/link"
 
 interface NavbarProps {
   activeSection: string
@@ -35,9 +36,11 @@ export const Navbar = ({ activeSection, isMenuOpen, setIsMenuOpen, scrollToSecti
       <div className="max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              D'NAZRIL
-            </h1>
+            <Link href="/" className="flex items-center space-x-2">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                D'NAZRIL
+              </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}

@@ -51,7 +51,7 @@ export const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <AnimatedElement direction="left" delay={400}>
+          <AnimatedElement direction="left" delay={370}>
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <CardTitle>Contact Information</CardTitle>

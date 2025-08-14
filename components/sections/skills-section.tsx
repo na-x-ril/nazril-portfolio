@@ -33,7 +33,7 @@ export const SkillsSection = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {skills.map((skill, index) => (
-            <AnimatedElement key={index} delay={index * 100} direction="up">
+            <AnimatedElement key={index} delay={index * 70} direction="up">
               <a
                 href={skill.link}
                 target="_blank"

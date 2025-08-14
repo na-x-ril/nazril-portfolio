@@ -8,8 +8,13 @@ import { AnimatedElement } from "@/components/animations/animated-element";
 import SpotlightCard from "../spotlight-card";
 
 import { projects, techLinks } from "@/data/portfolio-data";
+import { useTheme } from "next-themes";
 
 export const ProjectsSection = () => {
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
+  const spotlightColor = isDarkMode ? "rgba(59, 130, 246, 0.15)" : "rgba(59, 130, 246, 0.3)";
+  
   return (
     <section id="projects" className="py-20 min-h-screen">
       <div className="max-w-7xl min-lg:pt-20 mx-auto pt-20 px-4 sm:px-6 lg:px-8">
@@ -29,10 +34,10 @@ export const ProjectsSection = () => {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <AnimatedElement key={index} delay={index * 200} direction="up">
+            <AnimatedElement key={index} delay={index * 150} direction="up">
               <SpotlightCard
                 className="group flex flex-col h-full transition-all duration-300 hover:scale-105"
-                spotlightColor="rgba(59, 130, 246, 0.15)"
+                spotlightColor={spotlightColor}
               >
                 <div className="flex-grow">
                   <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-400 transition-colors">

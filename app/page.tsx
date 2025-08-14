@@ -61,7 +61,7 @@ export default function Portfolio() {
   if (!mounted) return null
 
   return (
-    <div className="h-dvh bg-background text-foreground w-full">
+    <div className="h-dvh bg-background text-foreground w-full overflow-x-hidden">
       {/* Pasang ref di sini */}
       <div ref={navbarRef}>
         <Navbar
