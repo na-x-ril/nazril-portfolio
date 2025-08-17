@@ -92,7 +92,7 @@ export const ProfileSidebar = ({
         </Card>
 
         {/* Navigation */}
-        <div className="space-y-2">
+        <div className="space-y-1">
           <h4 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
             Navigation
           </h4>

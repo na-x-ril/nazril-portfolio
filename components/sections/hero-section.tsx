@@ -6,6 +6,7 @@ import SplitText from "../split-text"
 import TextType from "../text-type"
 import { Separator } from "@radix-ui/react-context-menu"
 import Particles from "@/components/ui/particles"
+import { heroData } from "@/data/portfolio-data"
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void
@@ -29,7 +30,7 @@ export const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
       <div className="text-left lg:text-left z-10">
         <h1 className="flex flex-col">
           <SplitText
-            text="Hello, I'm"
+            text={heroData.greeting}
             className="text-5xl tracking-tight font-extrabold text-left text-foreground sm:text-5xl md:text-6xl"
             delay={70}
             duration={2}
@@ -42,7 +43,7 @@ export const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
             textAlign="left"
           />
           <SplitText
-            text="Muhammad Nazril!"
+            text={heroData.name}
             className="text-5xl tracking-tight font-extrabold text-left text-foreground sm:text-5xl md:text-6xl"
             delay={70}
             duration={2}
@@ -56,8 +57,8 @@ export const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
           />
         </h1>
         <TextType
-          className="mt-4 text-lg text-foreground rounded-md max-w-full max-md:w-4/5"
-          text={["I am a high school student who is interested in web development and technology."]}
+          className="mt-4 max-md:mt-2 text-lg text-foreground rounded-md max-w-full max-md:w-4/5"
+          text={heroData.tagline}
           initialDelay={500}
           typingSpeed={75}
           pauseDuration={500}
@@ -65,13 +66,13 @@ export const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
           showCursor={true}
           cursorCharacter="_"
         />
-        <Separator className="w-full mt-5 h-[1px] bg-primary" />
-        <div className="mt-5 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <Button size="lg" onClick={() => scrollToSection("projects")} className="group">
+        <Separator className="w-full mt-5 max-md:mt-2 h-[1px] bg-primary" />
+        <div className="mt-5 flex sm:flex-row gap-4 justify-center lg:justify-start">
+          <Button size="lg" onClick={() => scrollToSection("projects")} className="group w-full">
             View My Work
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
-          <Button variant="outline" size="lg" onClick={() => scrollToSection("contact")}>
+          <Button className="bg-transparent dark:bg-black/20 backdrop-blur-md w-full" variant="outline" size="lg" onClick={() => scrollToSection("contact")}>
             Get In Touch
           </Button>
         </div>

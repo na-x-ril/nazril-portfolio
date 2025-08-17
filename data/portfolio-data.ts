@@ -16,6 +16,12 @@ export const personalInfo = {
   },
 };
 
+export const heroData = {
+  greeting: "Hello 👋,",
+  name: "I'm Muhammad Nazril!",
+  tagline: "I am a high school student who is interested in web development and technology."
+}
+
 // 2. Navigation items for sidebar
 export const navItems = [
   { id: "skills", label: "Skills" },

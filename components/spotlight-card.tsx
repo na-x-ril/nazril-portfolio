@@ -48,7 +48,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   };
 
   const lightSpotlight = "rgba(59, 130, 246, 0.15)";
-  const darkSpotlight = "rgba(59, 130, 246, 0.25)";
+  const darkSpotlight = "rgba(59, 130, 846, 0.5)";
   const lightBlackSpotlight = "rgba(0, 0, 0, 0.15)";
   const darkBlackSpotlight = "rgba(0, 0, 0, 0.25)";
   const lightSpotBorder = "rgba(59, 130, 246, 0.25)";
